@@ -1,4 +1,5 @@
 var jwt = require('jsonwebtoken');
+const privateKey = process.env.PRIVATE_KEY
 
 const authorise = async (req, res, next) => {
     const success = false

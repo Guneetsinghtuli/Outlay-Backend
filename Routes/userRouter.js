@@ -1,6 +1,7 @@
 const express = require('express')
 const { addUser, getUser, login } = require('../Controllers/userController')
-const { body, validationResult } = require('express-validator');
+const { body } = require('express-validator');
+const authorise = require('../Middleware/userAuth');
 const Router = express.Router()
 
 
@@ -17,7 +18,7 @@ const validation =[
     .withMessage('Password should be minimum of 5 Characters')
 ]
 
-Router.get("/getuser", getUser)
+Router.get("/getuser",authorise, getUser)
 Router.post("/login", login)
 Router.post("/add",validation,
 addUser)
