@@ -1,6 +1,7 @@
 const express= require("express")
 const mongoose = require('mongoose')
 const dotenv = require('dotenv');
+const cors = require('cors')
 dotenv.config();
 
 const User = require('./Routes/userRouter')
@@ -12,7 +13,7 @@ mongoose.connect( MONGO_URL,()=>{
     console.log("Database connected successfully")
 })
 const app = express()
-
+app.use(cors())
 app.use(express.json())
 
 app.use("/api/v1/user",User)
